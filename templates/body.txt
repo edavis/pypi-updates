@@ -3,4 +3,5 @@ Version:  {{ version }}
 Summary:  {{ summary }}
 Author:   {{ author }}
 License:  {{ license }}
+Date:     {{ date }}
 PyPI URL: {{ release_url }}

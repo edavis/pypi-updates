@@ -5,6 +5,7 @@ import time
 import postmark
 from pkgtools.pypi import PyPIXmlRpc
 from jinja2 import Environment, FileSystemLoader
+from email.utils import formatdate
 
 LAST_UPDATE_STATE_FILE = "/tmp/pypi-last-update"
 TO_ADDR = "pypi.updates@librelist.com"
@@ -36,6 +37,7 @@ def render(template, context):
 def build_email(info):
     (name, version, timestamp) = info
     release_data = pypi.release_data(name, version)
+    release_data['date'] = formatdate(timestamp)
 
     mail = postmark.PMMail()
     mail.api_key = POSTMARK_API_KEY

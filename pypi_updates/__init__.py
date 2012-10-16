@@ -40,6 +40,11 @@ def build_email(info):
     return mail
 
 def main():
+    if not os.path.exists(LAST_UPDATE_STATE_FILE):
+        raise MissingStateFile("Could not find '%s'. "
+                               "Please create with appropriate "
+                               "modification time." % LAST_UPDATE_STATE_FILE)
+
     timestamp = get_last_update_timestamp()
     updates = list(get_updates(timestamp))
 

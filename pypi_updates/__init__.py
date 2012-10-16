@@ -14,13 +14,7 @@ template_env = Environment(loader=PackageLoader('pypi_updates'))
 pypi = PyPIXmlRpc()
 
 def get_last_update_timestamp():
-    state_file = LAST_UPDATE_STATE_FILE
-    if not os.path.exists(state_file):
-        with open(state_file, "w") as fp:
-            fp.write("")
-        return int(time.time() - 60*60)
-    else:
-        return int(os.stat(state_file).st_mtime)
+    return int(os.stat(LAST_UPDATE_STATE_FILE).st_mtime)
 
 def get_updates(timestamp):
     updates = pypi.changelog(timestamp)

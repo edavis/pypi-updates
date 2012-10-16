@@ -1,10 +1,8 @@
-#!/usr/bin/env python
-
 import os
 import time
 import postmark
 from pkgtools.pypi import PyPIXmlRpc
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, PackageLoader
 from email.utils import formatdate
 
 LAST_UPDATE_STATE_FILE = "/tmp/pypi-last-update"
@@ -12,7 +10,7 @@ TO_ADDR = "pypi.updates@librelist.com"
 SENDER_ADDR = "Eric Davis <ed@npri.org>"
 POSTMARK_API_KEY = os.environ['POSTMARK_API_KEY']
 
-template_env = Environment(loader=FileSystemLoader(['./templates/']))
+template_env = Environment(loader=PackageLoader('pypi_updates'))
 pypi = PyPIXmlRpc()
 
 def get_last_update_timestamp():
@@ -66,6 +64,3 @@ def main():
 
     last_update = updates[-1][2]
     os.utime(LAST_UPDATE_STATE_FILE, (last_update, last_update))
-
-if __name__ == "__main__":
-    main()

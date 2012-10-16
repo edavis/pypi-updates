@@ -1,0 +1,6 @@
+Name:     {{ name }}
+Version:  {{ version }}
+Summary:  {{ summary }}
+Author:   {{ author }}
+License:  {{ license }}
+PyPI URL: {{ release_url }}

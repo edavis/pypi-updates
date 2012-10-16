@@ -7,7 +7,7 @@ from email.utils import formatdate
 
 LAST_UPDATE_STATE_FILE = "/tmp/pypi-last-update"
 TO_ADDR = "pypi.updates@librelist.com"
-SENDER_ADDR = "Eric Davis <ed@npri.org>"
+SENDER_ADDR = "PyPI Updates <ed@npri.org>"
 POSTMARK_API_KEY = os.environ['POSTMARK_API_KEY']
 
 template_env = Environment(loader=PackageLoader('pypi_updates'))
